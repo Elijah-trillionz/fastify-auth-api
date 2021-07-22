@@ -1,4 +1,4 @@
-### GET test
+### GET ALL POSTS
 GET http://localhost:5000/api/posts HTTP/1.1
 
 ### GET A POST ? public
