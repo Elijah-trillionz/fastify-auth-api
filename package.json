@@ -1,0 +1,22 @@
+{
+  "name": "fastify-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "server": "nodemon server.js"
+  },
+  "author": "Elijah Trillionz",
+  "license": "MIT",
+  "dependencies": {
+    "config": "^3.3.6",
+    "fastify": "^3.19.1",
+    "fastify-auth": "^1.1.0",
+    "fastify-swagger": "^4.8.3",
+    "jsonwebtoken": "^8.5.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  }
+}
