@@ -14,6 +14,8 @@ const {
   deletePostHandler,
 } = require('../controllers/handlers/posts.js');
 
+const verifyToken = require('../controllers/auth/verifyToken')
+
 const getPostsOpts = {
   schema: getPostsSchema,
   handler: getPostsHandler,
@@ -39,23 +41,37 @@ const deletePostOpts = {
   handler: deletePostHandler,
 };
 
+
 const postRoutes = (fastify, opts, done) => {
   // get all posts
   fastify.get('/api/posts', getPostsOpts);
 
   // get a post
   fastify.get('/api/posts/:id', getPostOpts);
-
-  // create a new post
-  fastify.post('/api/posts/new', addPostOpts);
-
-  // update a post
-  fastify.put('/api/posts/edit/:id', updatePostOpts);
-
-  // delete a post
-  fastify.delete('/api/posts/:id', deletePostOpts);
+  
+  fastify.register(require('fastify-auth')).after(() => privatePostRoutes(fastify));
 
   done();
 };
+
+const privatePostRoutes = (fastify) => {
+  // create a new post
+fastify.post('/api/posts/new', {
+  preHandler: fastify.auth([verifyToken]),
+  ...addPostOpts
+});
+
+// update a post
+fastify.put('/api/posts/edit/:id', {
+  preHandler: fastify.auth([verifyToken]),
+  ...updatePostOpts
+});
+
+// delete a post
+fastify.delete('/api/posts/:id', {
+  preHandler: fastify.auth([verifyToken]),
+  ...deletePostOpts
+});
+}
 
 module.exports = postRoutes;

@@ -16,11 +16,35 @@ content-type: application/json
 ### UPDATE A POST ? public
 PUT http://localhost:5000/api/posts/edit/2 HTTP/1.1
 content-type: application/json
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2MjgwODY0MTUsImV4cCI6MTYyODM0NTYxNX0.6qRtfaxjNwk8V8yRpGjyfQG4dDN5q67qlAV2T0d7VaI
 
 {
-  "title": "Updated title",
+  "title": "Updated title agn",
   "body": "Updated body"
 }
 
 ### DELETE A POST ? public
-DELETE http://localhost:5000/api/posts/3 HTTP/1.1
+DELETE http://localhost:5000/api/posts/4 HTTP/1.1
+
+### GET ALL ADMINS ? public
+GET http://localhost:5000/api/admins HTTP/1.1
+
+### REGISTER AN ADMIN ? public
+POST http://localhost:5000/api/admins/new HTTP/1.1
+content-type: application/json
+
+{
+  "username": "elijah_trillionz",
+  "email": "elijahtrillionz@gmail.com",
+  "password": 243
+}
+
+### LOGIN AN ADMIN ? public
+POST http://localhost:5000/api/admins/login HTTP/1.1
+content-type: application/json
+
+{
+  "username": "elijah_trillionz",
+  "email": "elijahtrillionz@gmail.com",
+  "password": 243
+}

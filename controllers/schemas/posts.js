@@ -9,6 +9,14 @@ const post = {
   },
 };
 
+const headerSchema = {
+  type: 'object',
+  required: ['token'],
+  properties: {
+    token: typeString,
+  },
+};
+
 const getPostsSchema = {
   response: {
     200: {
@@ -28,6 +36,7 @@ const getPostSchema = {
 };
 
 const addPostSchema = {
+  headers: headerSchema,
   body: {
     type: 'object',
     required: ['title', 'body'],
@@ -42,6 +51,7 @@ const addPostSchema = {
 };
 
 const updatePostSchema = {
+  headers: headerSchema,
   body: {
     type: 'object',
     required: ['title', 'body'],
@@ -59,6 +69,7 @@ const updatePostSchema = {
 };
 
 const deletePostSchema = {
+  headers: headerSchema,
   params: {
     id: { type: 'number' },
   },
